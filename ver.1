@@ -1,0 +1,70 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+
+import javax.swing.Timer;
+
+public final class NumberCheck {
+	static int delay = 6000; //milliseconds
+	static boolean end = false;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+Scanner scan = new Scanner (System.in);
+
+System.out.println("Enter your current verification code:");
+do {
+	
+	 ActionListener taskPerformer = new ActionListener() {
+	      public void actionPerformed(ActionEvent evt) {
+	    		 System.out.println("");
+	    		 String verifier=randomAlphaNumeric(6);
+	    		 System.out.println(verifier);
+	      }
+	  };
+	  Timer timer = new Timer(delay, taskPerformer);
+	  timer.start();
+	 
+	  
+	  String verifier=randomAlphaNumeric(6);
+	System.out.println(verifier);
+
+
+String input = scan.nextLine();
+if (input.equalsIgnoreCase("terminate")) {
+	System.exit(0);
+}
+
+if (input.equals(verifier)) {
+	System.out.println("Please wait while accessing the system...");
+	end = true;
+	if (end = true) {
+		timer.stop();
+	
+	}
+	break;
+}
+else {
+	System.out.println("Please re-enter your correct verification code:");
+	timer.stop();
+	}
+}
+while (end == false);
+
+}
+	
+	
+	private static final String verifierCode = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	
+		public static String randomAlphaNumeric(int count) {
+				StringBuilder randomize = new StringBuilder();
+					while (count-- != 0) {
+						int character = (int)(Math.random()*verifierCode.length());
+						randomize.append(verifierCode.charAt(character));
+					}
+					return randomize.toString();
+	}
+
+	}
+
+
